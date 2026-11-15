@@ -1,4 +1,4 @@
-// Creative Pebble X (USB 041E:3299) - SignalRGB plugin.
+// Creative Pebble X (USB 041E:3299) and Pebble X Plus (041E:329A) - SignalRGB plugin.
 // Protocol taken from a USB capture of Creative App (2026-11-15):
 //   every command is a 64-byte HID output report (ID 0x03) on the vendor collection 0xFF01:
 //   03 6A 3A <len> 00 <cmd> <args...>      len = 1 (cmd) + args length
@@ -10,7 +10,7 @@
 
 export function Name() { return "Creative Pebble X"; }
 export function VendorId() { return 0x041E; }
-export function ProductId() { return 0x3299; }
+export function ProductId() { return [0x3299, 0x329A]; } // Pebble X, Pebble X Plus (X Plus not tested by the author)
 export function Publisher() { return "nenakhov"; }
 export function Type() { return "Hid"; }
 export function DeviceType() { return "speakers"; }
@@ -63,6 +63,7 @@ function sendCommand(bytes) {
 }
 
 export function Initialize() {
+	if (device.productId() === 0x329A) { device.setName("Creative Pebble X Plus"); }
 	sendCommand([0x25, 0x01]);                    // light on
 	sendCommand([0x29, SLOT, EFFECT_STATIC]);     // slot 6 = Static
 	sendCommand([0x2D, SLOT]);                    // activate slot 6

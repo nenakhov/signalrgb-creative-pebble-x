@@ -2,6 +2,8 @@
 
 A [SignalRGB](https://signalrgb.com) plugin that drives the RGB lighting of the **Creative Pebble X** desktop speakers (USB `041E:3299`) from the SignalRGB canvas.
 
+The **Pebble X Plus** (USB `041E:329A`) is also matched. It is assumed to use the same protocol but hasn't been tested yet. Please open an issue if it works or doesn't.
+
 SignalRGB has no built-in support for this speaker. The plugin talks to it over the same USB HID channel that Creative App uses.
 
 ## Install
