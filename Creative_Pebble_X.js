@@ -21,12 +21,14 @@ export function DefaultScale() { return 8.0; }
 shutdownColor:readonly
 LightingMode:readonly
 forcedColor:readonly
+exitLighting:readonly
 */
 export function ControllableParameters() {
 	return [
 		{"property":"shutdownColor", "group":"lighting", "label":"Shutdown Color", "min":"0", "max":"360", "type":"color", "default":"#000000"},
 		{"property":"LightingMode", "group":"lighting", "label":"Lighting Mode", "type":"combobox", "values":["Canvas", "Forced"], "default":"Canvas"},
 		{"property":"forcedColor", "group":"lighting", "label":"Forced Color", "min":"0", "max":"360", "type":"color", "default":"#009bde"},
+		{"property":"exitLighting", "group":"lighting", "label":"Lighting on exit", description: "Off turns the speaker lighting off when SignalRGB exits. On leaves Creative's default effect running in slot 6.", "type":"combobox", "values":["Off", "On"], "default":"Off"},
 	];
 }
 
@@ -74,6 +76,10 @@ export function Render() {
 export function Shutdown(SystemSuspending) {
 	sendColors(SystemSuspending ? "#000000" : shutdownColor);
 	sendCommand([0x29, SLOT, EFFECT_CREATIVE_DEFAULT_SLOT6]);  // give slot 6 back to Creative's default effect
+
+	if (exitLighting !== "On") {
+		sendCommand([0x25, 0x00]);                             // light off, as Creative App's toggle does
+	}
 }
 
 function sendColors(overrideColor) {

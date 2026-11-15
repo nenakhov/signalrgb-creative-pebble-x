@@ -17,6 +17,7 @@ The speaker must be connected over USB, because Bluetooth does not carry the lig
 
 - The plugin samples **5 points** from a vertical column on the canvas and shows them on the speaker from top to bottom.
 - It uses **slot 6** of the speaker's lighting slots. It sets that slot to the *Static* effect and makes it active. When SignalRGB exits, slot 6 goes back to Creative's default effect.
+- When SignalRGB exits, the speaker lighting turns off by default. If you want Creative's default effect to keep running instead, set **Lighting on exit** to *On* in the device settings.
 - It sends at most 10 updates per second, and only when a colour changes. It also resends the current colours every 2 seconds.
 - Don't change the lighting in Creative App while SignalRGB is running. If you pick another slot or effect there, it overrides the plugin until SignalRGB restarts.
 
