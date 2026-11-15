@@ -10,7 +10,7 @@
 
 export function Name() { return "Creative Pebble X"; }
 export function VendorId() { return 0x041E; }
-export function ProductId() { return [0x3299, 0x329A]; } // Pebble X, Pebble X Plus (X Plus not tested by the author)
+export function ProductId() { return [0x3299, 0x329A]; } // Pebble X, Pebble X Plus (confirmed by a user)
 export function Publisher() { return "nenakhov"; }
 export function Type() { return "Hid"; }
 export function DeviceType() { return "speakers"; }
